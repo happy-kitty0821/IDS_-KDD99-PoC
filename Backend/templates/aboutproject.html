@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="https://iic.edu.np/image/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Project</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-size: cover;
+            background: url("{% static 'images/omen1080.png' %}") no-repeat;
+            background-position: center;
+            background-position-y: 105px;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        nav {
+            position: sticky;
+            top: 0ss;
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo img {
+            max-width: 75px;
+            height: auto;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+        }
+
+        li {
+            margin-right: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #FF5733;
+            font-weight: 900;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="iic logo">
+            <ul>
+                <li>
+                    <a href="login">Login</a>
+                </li>
+                <li>
+                    <a href="aboutproject" onclick="location.reload()"">About</a>
+                </li>
+                <li>
+                    <a href="#">Contact Us</a>
+                </li>
+            </ul>
+            <img src="{% static 'images/ing.png' %}" alt="ing logo">
+        </div>
+    </nav>
+</body>
+<footer>
+    <div class="TryHackMe">
+    <script src="https://tryhackme.com/badge/2100720"></script>
+    </div>
+
+</footer>
+</html>

@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="https://iic.edu.np/image/favicon.png">
+    <meta http-equiv="refresh" content="10">
+    <title>Home PAge</title>
+    <style>
+               body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: aliceblue;
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-position-y:920px ;
+        }
+
+        nav {
+            position: sticky;
+            background-position-y: 0px;
+            top: 0ss;
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo img {
+            max-width: 75px;
+            height: auto;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+        }
+
+        li {
+            margin-right: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        a:hover {
+            color: magenta;
+        }
+
+
+
+    </style>
+    
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="https://iic.edu.np">
+                <img src="{% static 'images/logo.png' %}" alt="iic logo">     
+            </a>
+            <ul>
+                <li>
+                    <a href="profile">Profile</a>
+                </li>
+                <li>
+                    <a href="register">Register User</a>
+                </li>
+                <li>
+                    <a href="#">See Logs</a>
+                </li>
+            </ul>
+            <a href="https://ing.com.np">
+                <img src="{% static 'images/ing.png' %}" alt="ing logo">
+            </a>
+        </div>
+    </nav>
+    <br> <br>
+    <a href="{% url 'logout' %}">logout</a>
+    <br> <br>
+    <p style="font-weight: bolder;"> logged in as {{ user.id }}</p>
+    <p> logged in as {{ user.username }}</p>
+    <p> logged in as {{ user_id }}</p>
+</body>
+</html>

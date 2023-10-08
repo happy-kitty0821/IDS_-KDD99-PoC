@@ -1,0 +1,97 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="https://iic.edu.np/image/favicon.png">
+    <title>SYP IDS[POC]</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background: url("{% static 'images/landing.png' %}") no-repeat;
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-position-y:920px ;
+        }
+
+        nav {
+            position: sticky;
+            background-position-y: 0px;
+            top: 0ss;
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo img {
+            max-width: 75px;
+            height: auto;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+        }
+
+        li {
+            margin-right: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #FF5733;
+        }
+
+        .threatmap{
+            position: sticky;
+            margin: 2px;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="https://iic.edu.np">
+                <img src="{% static 'images/logo.png' %}" alt="iic logo">     
+            </a>
+            <ul>
+                <li>
+                    <a href="login">Login</a>
+                </li>
+                <li>
+                    <a href="aboutproject">About</a>
+                </li>
+                <li>
+                    <a href="#">Contact Us</a>
+                </li>
+            </ul>
+            <a href="https://ing.com.np">
+                <img src="{% static 'images/ing.png' %}" alt="ing logo">
+            </a>
+        </div>
+    </nav>
+    <iframe class="threatmap" src="https://cybermap.kaspersky.com/special/ics" width="1920" height="800" frameborder="0"> Live Cyber Attack Map</iframe>
+    <iframe src="" width="750" height="200"></iframe>
+</body>
+</html>
