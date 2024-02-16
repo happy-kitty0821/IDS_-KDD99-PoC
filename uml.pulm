@@ -1,0 +1,29 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor "System\nAdministrator" as admin
+actor "Network\nAdministrator" as network_admin
+actor "Security\nOperations Center\n(SOC) Analyst" as soc_analyst
+rectangle "ThreatGuard System" {
+  usecase "Monitor\nHost Devices" as monitor
+  usecase "Detect\nIntrusions" as detect
+  usecase "Alert\nAdministrator" as alert
+  usecase "Provide\nPort Status" as port_status
+  usecase "Generate\nReports" as reports
+  usecase "Download\nCaptured PCAP Files" as download_pcaps
+  usecase "Analyse\nPCAP Files" as analyse_pcaps
+  usecase "Change\nPort Status" as change_port_status
+  usecase "View/Enable/Disable\nServices" as manage_services
+  admin --> monitor
+  admin --> detect
+  detect --> alert
+  monitor --> port_status
+  admin --> reports
+  network_admin --> reports
+  soc_analyst --> reports
+  admin --> download_pcaps
+  admin --> analyse_pcaps
+  admin --> change_port_status
+  admin --> manage_services
+}
+@enduml
