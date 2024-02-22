@@ -1,0 +1,446 @@
+﻿	
+
+
+1. Introduction
+The rapid evolution of cyber threats has underscored the critical need for robust Intrusion Detection Systems (IDS) capable of detecting and mitigating network attacks. Traditional IDS face challenges in accurately identifying modern, sophisticated threats, prompting the exploration of advanced technologies such as machine learning. This interim report presents a study that aims to evaluate the effectiveness of machine learning algorithms, including decision trees, KNN, and the random forest classifier, in predicting network attacks and enhancing IDS accuracy.
+The research focuses on leveraging the random forest algorithm from scikit-learn, a popular machine learning library in Python known for its efficiency and effectiveness in handling complex datasets. The study utilizes the KDDCUP99 dataset, a benchmark for training and testing IDS, to analyze and classify diverse intrusion patterns. By enhancing the accuracy and efficiency of intrusion detection, this research seeks to bolster network security in the face of evolving cyber threats. This project not only aims to improve the detection capabilities of IDS but also to provide insights into the practical application of machine learning in enhancing cybersecurity measures."
+This expanded version provides more detail about the specific algorithm (random forest) and dataset (KDDCUP99) you used, as well as the potential implications of your research for enhancing network security.
+
+1.1. Introduction to the topic
+
+"Treat Guard" stands at the forefront of cybersecurity as a comprehensive Django web application tailored for administrators overseeing host device security. This innovative platform seamlessly integrates with a Host-based Intrusion Detection System (HIDS), enabling real-time email alerts to administrators in response to potential cyber threats. Leveraging Django's powerful framework, Treat Guard offers a sophisticated user interface, empowering administrators to monitor, manage, and administer host devices with ease.
+Treat Guard's advanced features include detailed device profiles, allowing administrators to view and modify device settings, network configurations, and security protocols. The application's integration with the HIDS provides administrators with critical insights into network activity, alerting them to potential threats such as unauthorized access attempts, malware activity, or suspicious network traffic. Administrators can take immediate action, such as isolating devices or blocking IP addresses, to prevent further security breaches.
+Additionally, Treat Guard's email alert system ensures that administrators are promptly informed of any security incidents, enabling them to respond swiftly and effectively. This proactive approach to cybersecurity not only enhances the overall security posture of the organization but also ensures business continuity by minimizing the impact of potential cyber attacks. Treat Guard sets a new standard in host device security, offering administrators a powerful tool to protect their network infrastructure and data assets.
+
+1.2. Current Scenario: Intrusion Detection System(IDS) and Machine Learning
+In today's rapidly evolving digital landscape, the proliferation of network connectivity has brought about a corresponding increase in cybersecurity threats. Intrusion Detection Systems (IDS) play a pivotal role in safeguarding networks by monitoring and analyzing network traffic to detect and respond to malicious activities. However, traditional IDS face significant challenges in effectively identifying and mitigating modern, sophisticated attacks.
+Traditional IDS, such as Snort and Suricata, typically rely on predefined rules or signatures to detect known threats. For example, Snort uses a signature-based approach to compare network traffic against a database of known attack patterns. Similarly, Suricata utilizes signature-based detection along with support for protocol analysis and anomaly-based detection to identify suspicious activity.
+However, these signature-based approaches have limitations when faced with unknown or evolving attack vectors. For instance, a zero-day exploit, which exploits a vulnerability that is unknown to the software vendor, may bypass signature-based detection, leading to a successful attack. Additionally, signature-based IDS can generate a high number of false positives if the signatures are too broad or if they match legitimate traffic patterns.
+Moreover, traditional IDS often struggle to distinguish between legitimate and malicious activity, leading to false positives. For example, legitimate activities such as network scans or software updates may trigger alerts in an IDS if they are not properly configured to differentiate between normal and suspicious behavior.
+The increasing complexity and volume of network traffic pose scalability challenges for traditional IDS. As network traffic grows, IDS may struggle to keep pace with the volume of data, leading to performance issues and potential missed detections.
+To address these limitations, there has been a growing interest in leveraging machine learning algorithms for intrusion detection. Machine learning offers the potential to enhance IDS capabilities by enabling systems to learn from and adapt to new threats in real-time. By analyzing patterns and anomalies in network traffic data, machine learning algorithms can detect subtle signs of malicious activity that may go unnoticed by traditional IDS.
+However, the deployment of machine learning-based IDS presents its own set of challenges. These include the need for large, labeled datasets for training, the complexity of algorithm selection and tuning, and the risk of adversarial attacks designed to deceive machine learning models.
+In light of these challenges, there is a pressing need for research to evaluate the effectiveness of machine learning algorithms in enhancing IDS accuracy and efficiency. By exploring the capabilities of algorithms such as decision trees, KNN, and the random forest classifier, researchers seek to improve the detection capabilities of IDS and strengthen network security in the face of evolving cyber threats.
+
+1.3. Project Scope
+In addition to evaluating the effectiveness of the Random Forest Classifier (RFC) algorithm in enhancing the accuracy and efficiency of Intrusion Detection Systems (IDS), this research project will explore the feasibility of integrating a web interface for interacting and administering the IDS.z
+The web interface will provide a user-friendly way for administrators to monitor the IDS alerts, view network traffic patterns, and adjust IDS settings. This approach aims to enhance the usability and accessibility of the IDS, allowing administrators to more effectively manage network security.
+The web interface will be designed to be intuitive and responsive, providing real-time updates and notifications for IDS alerts. It will also include features for data visualization, such as charts and graphs, to help administrators analyze network traffic patterns and identify potential security threats.
+The feasibility of integrating a web interface will be evaluated based on factors such as technical complexity, resource requirements, and compatibility with existing IDS infrastructure. The goal is to demonstrate that the addition of a web interface can enhance the overall effectiveness and usability of the IDS, making it a more valuable tool for network security.
+1.4. End User
+The web interface of the Intrusion Detection System (IDS) is designed to meet the needs of IT officers, SOC analysts, network administrators, and system administrators, providing them with a comprehensive set of tools and features to effectively monitor and manage network security.
+Key features of the web interface for end users include:
+    1. Dashboard Overview: A centralized dashboard provides a real-time overview of network activity, including alerts, traffic patterns, and system status, allowing users to quickly assess the security posture of the network.
+    2. Alert Management: Users can view and manage alerts generated by the IDS, including investigating alerts, acknowledging them, and taking appropriate actions to mitigate potential security threats.
+    3. Configuration and Settings: IT officers and administrators can customize IDS settings and configurations through the web interface, tailoring the system to meet specific security requirements and network conditions.
+    4. Reporting and Analysis: The web interface offers detailed reporting and analysis tools, allowing users to generate reports on network activity, alerts, and security incidents for further analysis and auditing purposes.
+    5. Collaboration and Communication: The web interface facilitates collaboration and communication among security team members, enabling them to share information, coordinate responses to security incidents, and work together efficiently.
+Overall, the web interface enhances the user experience for IT officers, SOC analysts, and network and system administrators, providing them with the tools and insights they need to effectively monitor and manage network security.
+
+1.5. Aims and objectives
+Aims:
+The primary aim of this project is to develop a robust and efficient Intrusion Detection System (IDS) capable of identifying and mitigating various network attacks. The project aims to enhance cybersecurity measures by implementing advanced machine learning algorithms and integrating them into a comprehensive IDS.
+
+Objectives:
+    1. Develop an Intrusion Detection System: Create a functional IDS that can monitor network activities, detect suspicious patterns, and identify potential intrusions.
+    2. Implement Machine Learning Algorithms: Utilize machine learning algorithms, specifically the Random Forest Classifier, to enhance the IDS's accuracy in identifying network attacks and distinguishing them from normal network traffic.
+    3. Integration of Frontend and Backend Technologies: Integrate frontend technologies (HTML, CSS, JavaScript) to create an intuitive user interface and backend technologies (Django) to handle data processing and algorithm implementation.
+    4. Utilize KDDCUP99 Dataset: Utilize the KDDCUP99 dataset, a benchmark dataset for intrusion detection, to train and test the machine learning algorithms, ensuring the system's effectiveness against a wide range of intrusion scenarios.
+    5. Implement Port Status Check and Control: Develop functionality to enable administrators to check the status of individual ports, including whether they are enabled or disabled, and to control ports by enabling or disabling them as needed.
+    6. Optimize System Performance: Optimize the system's performance by selecting appropriate hardware components, including processors, memory, and storage, ensuring seamless execution of algorithms and efficient data processing.
+    7. Implement Virtualization: Implement virtualization techniques to create a scalable and flexible environment, allowing for the deployment and testing of the IDS in various configurations.
+    8. User-Friendly Interface: Develop an intuitive user interface that allows administrators to visualize detected intrusions, generate reports, configure the IDS settings, and perform individual port status checks, enabling or disabling ports and checking the services running on ports.
+    9. Testing and Validation: Conduct rigorous testing, including unit testing, integration testing, and performance testing, to validate the IDS's accuracy, efficiency, and reliability under different network conditions and attack scenarios.
+By achieving these objectives, the project aims to deliver an advanced and user-friendly Intrusion Detection System, contributing significantly to the realm of cybersecurity and network protection.
+
+
+
+
+
+2. Project Background
+Intrusion Detection Systems (IDS) are crucial components of network security, tasked with monitoring and analyzing network traffic to detect and respond to potential security threats. Traditional IDS face significant challenges, including high false positive rates and an inability to effectively detect unknown or evolving threats. These limitations highlight the need for more advanced and efficient IDS solutions.
+Machine learning algorithms have emerged as promising tools for enhancing IDS capabilities. By analyzing patterns and anomalies in network traffic data, machine learning algorithms can improve detection accuracy and adaptability to new threats. The Random Forest Classifier (RFC) algorithm, in particular, has shown effectiveness in distinguishing between normal network traffic and malicious activities.
+This project aims to develop a robust and efficient IDS by integrating machine learning algorithms, specifically the RFC algorithm, into a comprehensive IDS framework. The project also includes the integration of a web interface to provide administrators with an intuitive tool for monitoring and managing network security.
+The motivation behind this project stems from the increasing complexity and sophistication of cyber threats, which require more advanced and adaptive security measures. By developing an IDS that leverages machine learning and integrates a user-friendly web interface, this project seeks to address the limitations of traditional IDS and enhance network security in the face of evolving cyber threats.
+
+2.1. Tools and technology used
+    1. Integrated Development Environments (IDEs):
+        ◦ Visual Studio Code (VS Code): VS Code is a popular code editor developed by Microsoft. It provides features such as syntax highlighting, code completion, and debugging support for various programming languages.
+          
+
+
+
+
+
+
+        ◦ Sublime Text 4: Sublime Text is a lightweight yet powerful text editor known for its speed and simplicity. It offers a wide range of plugins and customization options for efficient coding.
+
+
+
+
+
+
+
+
+
+
+    2. Jupyter-lab and Jupyter-notebook:
+        ◦ Jupyter-lab: JupyterLab is an interactive development environment for working with notebooks, code, and data. It provides a flexible and extensible interface for data science and machine learning tasks.
+
+
+          
+        ◦ Jupyter-notebook: Jupyter Notebook is an open-source web application that allows you to create and share documents containing live code, equations, visualizations, and narrative text. It is widely used for prototyping and experimenting with code.
+          
+          
+    3. Version Control:
+        ◦ GitHub: GitHub is a web-based platform for version control and collaboration. It allows you to host and review code, manage projects, and build software alongside millions of other developers.
+
+
+
+
+
+
+
+
+
+
+    4. Frontend Languages:
+        ◦ HTML, CSS, and JavaScript: HTML (Hypertext Markup Language), CSS (Cascading Style Sheets), and JavaScript are the core technologies used for building the frontend of web applications. HTML is used for creating the structure of web pages, CSS is used for styling and layout, and JavaScript is used for adding interactivity and dynamic behavior to web pages.
+          
+          
+    5. Backend Language and Framework:
+        ◦ Django: Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It provides built-in features for authentication, URL routing, templating, and database management, making it suitable for building complex web applications.
+
+
+
+
+
+
+
+    6. Database Management System:
+        ◦ SQLite3: SQLite is a lightweight, serverless, and self-contained SQL database engine. It is the default database engine used by Django for development and testing purposes.
+          
+
+
+
+
+
+
+
+    7. Diagramming Tools:
+        ◦ Draw.io: Draw.io is a free online diagramming tool that allows you to create flowcharts, UML diagrams, network diagrams, and more. It provides a user-friendly interface and a wide range of shapes and templates for diagram creation.
+
+
+
+
+
+
+
+
+    8. Project Management Tools:
+        ◦ Team Gantt: TeamGantt is a project management tool that helps teams plan, organize, and track their projects using Gantt charts. It allows you to create and share project timelines, set dependencies, and allocate resources efficiently.
+          
+
+
+
+
+
+    9. UI Design and Wireframing Tools:
+        ◦ Figma: Figma is a collaborative interface design tool that enables teams to create, prototype, and collaborate on designs in real-time. It provides a cloud-based platform for designing user interfaces, wireframes, and interactive prototypes.
+
+
+
+
+
+
+
+
+
+    10. Python and Machine Learning:
+        ◦ Python: Python is a versatile programming language widely used for various purposes, including web development, data analysis, and machine learning. It offers a rich ecosystem of libraries and frameworks for developing and deploying machine learning models.
+
+
+
+
+
+
+
+
+
+        ◦ Random Forest Classifier: Random Forest is a machine learning algorithm that uses an ensemble of decision trees to make predictions. It is commonly used for classification tasks and is known for its robustness and high accuracy.
+
+
+        ◦ kddcup99 Dataset: The KDD Cup 1999 dataset is a widely used benchmark dataset for intrusion detection research. It contains network traffic data captured in a simulated environment, including normal traffic and various types of attacks.
+    11. Packet Capture Tools:
+        ◦ Wireshark, TCPdump, Scapy, pcapy: These are packet capture tools used for capturing and analyzing network traffic. Wireshark is a popular network protocol analyzer, while TCPdump is a command-line packet sniffer. Scapy is a Python library for crafting and dissecting network packets, and pcapy is a Python interface to libpcap, the packet capture library used by TCPdump.
+          
+
+
+
+
+
+
+
+
+By leveraging these tools and technologies, I was able to effectively develop, manage, and analyze your project, from coding and version control to data visualization and machine learning model development.
+2.2. Project Development Methodology
+From different types of methodology for SDLC (Software Development Life Cycle), I have decided to follow RUP (Rational Unified Process) methodology. Rational Unified Process (RUP) is an iterative software development methodology that provides a disciplined approach to assigning tasks and responsibilities within a software development organization. It emphasizes an iterative development cycle, use-case driven techniques, architecture-centric approach, and component-based development. RUP divides the software development process into four phases: Inception, Elaboration, Construction, and Transition, each with specific goals and activities.
+RUP promotes the use of best practices in software engineering and project management, encouraging collaboration among team members and allowing flexibility to adapt to changing requirements. It is based on industry-standard practices, focusing on iterative development, continuous risk management, and the importance of defining and maintaining the system architecture throughout the development process. RUP guides software development teams through a structured approach, ensuring the delivery of high-quality software that meets user needs. (study.com, 2022)
+site url for refrence: https://study.com/academy/lesson/what-is-the-rational-unified-process-methodology-tools-examples.html#:~:text=The%20RUP%20methodology%20splits%20the,evaluation%20of%20th 
+name: study.com
+The major reasons to choose RUP for this project is explained below:
+    1. Iterative and Incremental Development: RUP promotes an iterative and incremental approach to software development, allowing us to break down the project into manageable phases. This approach aligns well with the academic timeline, enabling us to deliver incremental results and receive feedback throughout the year.
+       
+    2. Flexibility and Adaptability: RUP is flexible and can be tailored to suit the specific needs of our project. As we progress through the academic year, we can adjust the methodology to incorporate new requirements, changes in scope, or emerging insights, ensuring that our project remains relevant and aligned with our goals.
+       
+    3. Comprehensive Documentation: RUP emphasizes the importance of documentation throughout the development process. This documentation is valuable for academic purposes, as it allows us to demonstrate our understanding of software engineering principles and practices, as well as the rationale behind our design decisions.
+       
+    4. Risk Management: RUP places a strong emphasis on risk management, helping us to identify and mitigate potential risks early in the project lifecycle. This proactive approach to risk management can help us avoid potential pitfalls and ensure the successful completion of our project.
+
+
+    5. Adherence to Best Practices: RUP is based on industry best practices and standards, providing us with a solid foundation in software engineering principles. This knowledge and experience are valuable assets that can benefit us in future academic and professional endeavors.
+       
+Overall, choosing RUP for our yearlong academic project can help us to effectively manage the complexity of the project, adapt to changing requirements, and deliver a high-quality software solution that meets our academic objectives.
+
+2.3. Review of the similar project
+2.3.1 Similar Project:
+a) snort:
+Snort is an open-source network intrusion detection system (NIDS) that is widely used for detecting and preventing network attacks. It was created by Martin Roesch in 1998 and is now maintained by Cisco. Snort is known for its flexibility, speed, and effectiveness in detecting a wide range of network threats.
+Key features of Snort include:
+    1. Signature-Based Detection: Snort uses a set of predefined rules or signatures to detect known threats and malicious activity in network traffic. These rules can be customized and updated regularly to adapt to new threats.
+    2. Protocol Analysis: Snort can analyze network protocols at a deep level, allowing it to detect anomalies and suspicious patterns that may indicate a network attack.
+    3. Real-Time Alerting: Snort can generate real-time alerts when it detects a potential threat, allowing network administrators to respond quickly to mitigate the impact of an attack.
+    4. Packet Logging: Snort can log network traffic that matches its detection rules, providing a detailed record of network activity for analysis and forensics purposes.
+    5. Integration with Other Security Tools: Snort can be integrated with other security tools and systems, such as firewalls and intrusion prevention systems (IPS), to enhance overall network security.
+
+2.3.2 Comparision beteen snort and therat guard
+3. Project Development
+3.1. Requirement Gathering
+During the requirement gathering phase, I conducted extensive research on existing projects and Proof of Concepts (POCs) related to Host-based Intrusion Detection Systems (HIDS) using machine learning (ML). This research aimed to gain insights into the best practices, challenges, and potential approaches for developing an effective HIDS.
+Based on this research, I documented a comprehensive set of requirements for the HIDS project. This included both functional and non-functional requirements. Functional requirements outlined the specific features and capabilities the HIDS should have, such as monitoring host devices, detecting intrusions, and providing alerts to administrators. Non-functional requirements focused on quality attributes like scalability, reliability, and ease of use.
+I also detailed the ML requirements for the HIDS, specifying the algorithms to be used, sources of training data, and criteria for evaluating the performance of the ML models. Additionally, I outlined the data collection and analysis methods, user interface design, security measures, integration requirements with existing systems, and testing and validation procedures.
+By documenting these requirements, I aimed to ensure that the HIDS project is well-defined and aligned with the goals of enhancing network security through ML-based intrusion detection.
+
+3.2. Use Case
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.3. SRS Document
+The full description of SRS document is kept in Appendix section i.e. SRS Document.
+3.4. Wireframes
+The images of wireframes are kept in Appendix section i.e. Wireframes with its full description.
+3.5. ERD
+
+Note: Identification process of entities, Relation between entities are kept in appendix section i.e. Entity Relationship Diagram with full description.
+
+
+
+4. Analysis of progress
+Analysis of progress sections includes the progress of second year project and how it is developing? This section helps to determine the actual progress of project by comparing with Gantt Chart.
+4.1. Progress Table
+
+
+
+
+
+
+
+
+
+
+
+
+4.2. Progress Timeline (Gantt Chart)
+The figure below shows the gantt chart of my ThreatGuard project. 
+
+5. Future works
+    1. Advanced Machine Learning Algorithms: Explore the implementation of advanced machine learning algorithms, such as deep learning models, to improve the accuracy and effectiveness of intrusion detection.
+    2. Real-time Data Analysis: Enhance the system to perform real-time data analysis for quicker detection and response to intrusions.
+    3. Behavioral Analysis: Introduce behavioral analysis techniques to detect anomalies in user behavior and network traffic patterns, enabling proactive threat detection.
+    4. Integration with Threat Intelligence Feeds: Integrate the system with external threat intelligence feeds to enhance detection of known threats and vulnerabilities, and improve response strategies.
+    5. Automated Response Mechanisms: Implement automated response mechanisms to mitigate detected threats, such as isolating compromised devices or blocking malicious traffic, reducing manual intervention.
+    6. Scalability and Performance Optimization: Optimize the system for scalability and performance to handle larger networks and higher traffic volumes, ensuring efficient operation in dynamic environments.
+    7. User Interface Enhancements: Improve the user interface to provide more detailed insights and visualization of network activity and detected threats, enhancing usability and decision-making.
+    8. Cross-platform Compatibility: Ensure the system is compatible with a wide range of operating systems and network environments for broader deployment and increased accessibility.
+    9. Continuous Monitoring and Updates: Implement a system for continuous monitoring of network activity and regular updates to the intrusion detection algorithms to adapt to new threats and attack vectors.
+    10. Integration with Security Information and Event Management (SIEM) Systems: Integrate the HIDS with SIEM systems for centralized monitoring and management of security events, streamlining security operations.
+These future works aim to enhance the capabilities of the Host-based Intrusion Detection System (HIDS) and ensure its effectiveness against evolving cyber threats.
+6. References
+
+
+
+
+
+7. Appendix
+7.1. SRS Document
+1. Introduction
+1.1 Purpose
+The purpose of this document is to specify the requirements for the development of a Host-based Intrusion Detection System (HIDS) using machine learning (ML). This system, named ThreatGuard, aims to enhance network security by monitoring and detecting intrusions on host devices.
+1.2 Scope
+The scope of the project includes the development of a HIDS that can monitor host devices, detect intrusions using ML algorithms, and provide alerts to administrators. The system will also allow administrators to view and administer host devices, including changing port status and managing services.
+1.3 Definitions, Acronyms, and Abbreviations
+    • HIDS: Host-based Intrusion Detection System
+    • ML: Machine Learning
+    • SOC: Security Operations Center
+1.4 References
+    • KDDCUP99 dataset: http://kdd.ics.uci.edu/databases/kddcup99/kddcup99.html
+2. Overall Description
+2.1 Product Perspective
+ThreatGuard will operate as a standalone system, interacting with host devices to monitor and detect intrusions. It will also provide a web interface for administrators to view and administer host devices.
+2.2 Product Features
+    • Monitor Host Devices: ThreatGuard will monitor host devices for suspicious activity and potential intrusions.
+    • Detect Intrusions: The system will use ML algorithms to detect intrusions based on network traffic patterns.
+    • Alert Administrator: ThreatGuard will provide alerts to administrators when intrusions are detected.
+    • View and Administer Host Devices: Administrators will be able to view and administer host devices, including changing port status and managing services.
+2.3 User Classes and Characteristics
+    • System Administrator: Responsible for managing and configuring ThreatGuard.
+    • Network Administrator: Responsible for network operations and security.
+    • SOC Analyst: Responsible for monitoring and analyzing security incidents.
+2.4 Operating Environment
+ThreatGuard will be developed using Django for the backend and HTML, CSS, and JavaScript for the frontend. It will be deployed on a server running Python and SQLite3 for the database.
+3. Specific Requirements
+3.1 Functional Requirements
+3.1.1 Monitor Host Devices
+    • The system shall monitor network traffic on host devices.
+    • The system shall analyze network traffic patterns for suspicious activity.
+3.1.2 Detect Intrusions
+    • The system shall use ML algorithms to detect intrusions.
+    • The system shall classify detected intrusions based on severity.
+3.1.3 Alert Administrator
+    • The system shall provide alerts to administrators when intrusions are detected.
+    • The system shall send alerts via email.
+3.1.4 View and Administer Host Devices
+    • Administrators shall be able to view a list of host devices.
+    • Administrators shall be able to change the status of ports on host devices.
+    • Administrators shall be able to view and manage services running on host devices.
+3.2 Non-Functional Requirements
+3.2.1 Security
+    • The system shall require authentication for access.
+    • The system shall encrypt sensitive data.
+3.2.2 Performance
+    • The system shall be able to process network traffic in real-time.
+    • The system shall be able to handle a large number of host devices.
+3.2.3 Usability
+    • The system shall have a user-friendly interface.
+    • The system shall provide clear and informative alerts.
+4. Appendix
+4.1 Use Case Diagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4.2 Entity Relationship Diagram
+
+4.3 Glossary
+    • IDS: Intrusion Detection System
+    • RFC: Random Forest Classifier
+This concludes the Software Requirements Specification for ThreatGuard.
+
+
+
+
+7.2. Wireframes
+
+7.3. Entity Relationship Diagram
+Identification of entity and their attributes:
+    1. auth_user:
+        ◦ Entity: User
+        ◦ Attributes:
+            ▪ id (primary key)
+            ▪ username
+            ▪ first_name
+            ▪ last_name
+            ▪ email
+            ▪ password
+            ▪ is_staff
+            ▪ is_active
+            ▪ date_joined
+    2. DeviceInfo:
+        ◦ Entity: Device
+        ◦ Attributes:
+            ▪ id (primary key)
+            ▪ hostname
+            ▪ current_ip_address
+    3. Logs:
+        ◦ Entity: Log
+        ◦ Attributes:
+            ▪ id (primary key)
+            ▪ user_id (foreign key referencing auth_user.id)
+            ▪ date_time
+            ▪ hostname_id (foreign key referencing DeviceInfo.id)
+            ▪ changes_done
+    4. PortStatus:
+        ◦ Entity: Port
+        ◦ Attributes:
+            ▪ id (primary key)
+            ▪ port_num
+            ▪ service
+            ▪ port_status
+            ▪ hostname_id (foreign key referencing DeviceInfo.id)
+    5. Attack:
+        ◦ Entity: Attack
+        ◦ Attributes:
+            ▪ id (primary key)
+            ▪ time
+            ▪ attack_type
+            ▪ pcap_file_name
+            ▪ pcap_location
+            ▪ hostname_id (foreign key referencing DeviceInfo.id)
+These entities represent the main components of the system and their associated attributes.
+Here's a brief explanation of each entities:
+    1. auth_user: Stores user authentication information, such as username, first name, last name, email, password hash, and metadata like whether the user is a staff member or active, and the date they joined.
+    2. DeviceInfo: Contains information about devices, including a unique identifier (id), hostname, and current IP address.
+    3. Logs: Records logs of changes or actions performed by users, referencing the auth_user table (user_id) and the DeviceInfo table (hostname_id). It also includes a timestamp (date_time) and details of the changes (changes_done).
+    4. PortStatus: Tracks the status of ports on devices, including the port number, the service running on the port, and the current status (defaulting to 'Inactive'). It references the DeviceInfo table (hostname_id).
+    5. Attack: Stores information about detected attacks, including the timestamp (time), the type of attack (attack_type), the name of the pcap file associated with the attack (pcap_file_name), the location of the pcap file (pcap_location), and the affected device (hostname_id).
+Relationship between entities:
+    1. auth_user and Logs:
+        ◦ One-to-Many Relationship: Each user can have multiple logs (changes_done), but each log belongs to only one user. This is represented by the foreign key user_id in the Logs table referencing the id primary key in the auth_user table.
+    2. DeviceInfo and Logs:
+        ◦ One-to-Many Relationship: Each device can have multiple logs (changes_done), but each log is associated with only one device. This is represented by the foreign key hostname_id in the Logs table referencing the id primary key in the DeviceInfo table.
+    3. DeviceInfo and PortStatus:
+        ◦ One-to-Many Relationship: Each device can have multiple port statuses, but each port status is associated with only one device. This is represented by the foreign key hostname_id in the PortStatus table referencing the id primary key in the DeviceInfo table.
+    4. DeviceInfo and Attack:
+        ◦ One-to-Many Relationship: Each device can be associated with multiple attacks, but each attack is associated with only one device. This is represented by the foreign key hostname_id in the Attack table referencing the id primary key in the DeviceInfo table.
+7.4. Project as a solution
+The "ThreatGuard" project aims to provide a comprehensive solution for network security by developing a sophisticated Host-based Intrusion Detection System (HIDS) using machine learning. By leveraging advanced machine learning algorithms, particularly the Random Forest Classifier, the system can effectively detect and mitigate various network attacks, including known and unknown threats.
+The key components of the solution include:
+    1. Intrusion Detection: The HIDS monitors network activities in real-time, analyzing patterns and anomalies to detect suspicious behavior indicative of an intrusion.
+    2. Machine Learning: By training on the KDDCUP99 dataset, the system can classify network traffic and identify potential threats with high accuracy, minimizing false positives and negatives.
+    3. Alerting Mechanism: Upon detecting an intrusion, the system alerts administrators via email, enabling swift response and mitigation of the threat.
+    4. Port Status Check: The system provides functionality to check and control individual port statuses, allowing administrators to enable or disable ports and manage services running on them.
+    5. User Interface: An intuitive web interface enables administrators to visualize network activity, view intrusion alerts, and manage system settings, enhancing usability and accessibility.
+    6. Scalability and Performance: The system is designed to be scalable and performant, capable of handling large networks and high traffic volumes without compromising on detection accuracy.
+    7. Future Enhancements: Potential future enhancements include the integration of advanced machine learning algorithms, real-time data analysis, and automated response mechanisms to further enhance the system's capabilities.
+Overall, the "ThreatGuard" project serves as a robust and efficient solution for network security, providing organizations with the tools and technologies needed to protect their networks against evolving cyber threats.
+7.5. Project Gantt Chart
+
+
+7.6. Selected Methodology
