@@ -11,25 +11,25 @@
 <body>
     <nav>
         <div class="logo">
-            <img src="{% static 'images/logo.png' %}" alt="iic logo">
+            <a href="https://iic.edu.np">
+                <img src="{% static 'images/logo.png' %}" alt="iic logo"/>
+            </a>
             <ul>
                 <li>
-                    <a href="admin/">Admin</a>
+                    <a href="/register">Register User</a>
                 </li>
                 <li>
-                    <a href="#" onclick="location.reload()"">Register</a>
+                    <a href="/profile">Profile</a>
                 </li>
                 <li>
-                    <a href="#">Show Logs</a>
-                </li>
-                <li>
-                    <a href="#">Profile</a>
+                    <a href="{% url 'logout' %}">logout</a>
                 </li>
             </ul>
-            <img src="{% static 'images/ing.png' %}" alt="ing logo">
+            <a href="https://ing.com.np">
+                <img src="{% static 'images/ing.png' %}" alt="ing logo"/>
+            </a>
         </div>
     </nav>
-    
     <div class="container">
         <h2><span class="sapn-register"></span></h2>
         <form action="" method="post">
@@ -45,10 +45,13 @@
             </div>
             
             <div>
-                <label for="fullname">Full Name:</label>
-                <input type="text" id="fullname" name="fullname" required>
+                <label for="firstname">First Name:</label>
+                <input type="text" id="firstname" name="firstname" required>
             </div>
-
+            <div>
+                <label for="lastname">Last Name:</label>
+                <input type="text" id="lastname" name="lastname" required>
+            </div>
             <div>    
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password1" required>

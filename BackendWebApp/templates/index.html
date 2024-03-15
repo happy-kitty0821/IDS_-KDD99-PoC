@@ -1,101 +1,69 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="https://iic.edu.np/image/favicon.png">
-    <meta http-equiv="refresh" content="1000">
-    <title>Home PAge</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            background-color: aliceblue;
-            background-size: cover;
-            background-position: center;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-position-y:920px ;
-        }
-
-        nav {
-            position: sticky;
-            background-position-y: 0px;
-            top: 0ss;
-            width: 100%;
-            background-color: #000000;
-            box-shadow: 0 4px 6px rgb(255, 255, 255);
-        }
-
-        .logo {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .logo img {
-            max-width: 75px;
-            height: auto;
-        }
-
-        ul {
-            list-style: none;
-            display: flex;
-        }
-
-        li {
-            margin-right: 20px;
-        }
-
-        a {
-            text-decoration: none;
-            color: #0f0;
-            font-weight: bold;
-        }
-        a:hover {
-            color: rgb(183, 0, 255);
-        }
-
-
-
-    </style>
-    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" type="image/x-icon" href="https://iic.edu.np/image/favicon.png"/>
+    <link rel="stylesheet"  href="{%static 'css/index.css'%}"/>
+    <meta http-equiv="refresh" content="1000" />
+    <title>Home Page</title>
 </head>
+
 <body>
     <nav>
         <div class="logo">
             <a href="https://iic.edu.np">
-                <img src="{% static 'images/logo.png' %}" alt="iic logo">     
+                <img src="{% static 'images/logo.png' %}" alt="iic logo"/>
             </a>
             <ul>
                 <li>
-                    <a href="admin/">Admin</a>
+                    <a href="/register">Register User</a>
                 </li>
                 <li>
-                    <a href="register">Register User</a>
+                    <a href="/profile">Profile</a>
                 </li>
                 <li>
-                    <a href="#">See Logs</a>
-                </li>
-                <li>
-                    <a href="profile">Profile</a>
+                    <a href="{% url 'logout' %}">logout</a>
                 </li>
             </ul>
             <a href="https://ing.com.np">
-                <img src="{% static 'images/ing.png' %}" alt="ing logo">
+                <img src="{% static 'images/ing.png' %}" alt="ing logo"/>
             </a>
         </div>
     </nav>
-    <br> <br>
-    <a href="{% url 'logout' %}">logout</a>
-    <br> <br>
-    <p style="font-weight: bolder;"> current user's UID : {{ user.id }}</p>
-    <p style="font-weight: bolder;"> logged in as {{ user.username }}</p>
+    <br />
+    <br />
+    <!-- <p style="font-weight: bolder;"> current user's UID : {{ user.id }}</p>
+    <p style="font-weight: bolder;"> logged in as {{ user.username }}</p> -->
+    <!--OST Widget code start-->
+    <div class="speed-test">
+        <div><iframe src="//openspeedtest.com/speedtest"></iframe></div>
+    </div>
+    <!-- OST Widget code end -->
+    <div class="portStatus">
+        <h5>Listening Ports</h5>
+        <table border="2">
+            <thead>
+                <tr>
+                    <th>Port Number</th>
+                    <th>Status</th>
+                    <th>Service</th>
+                    <th>Host Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for portstatus in portstatus %}
+                    <tr>
+                        <td>{{ portstatus.portNumber }}</td>
+                        <td>{{ portstatus.portStatus }}</td>
+                        <td>{{ portstatus.portService }}</td>
+                        <td>{{ portstatus.HostName.HostName }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
