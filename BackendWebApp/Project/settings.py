@@ -133,7 +133,8 @@ EMAIL_HOST_PASSWORD = 'vofx clsn qhyt pcpw'
 
 
 #media directory settings
-
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media/'
 
 
 #jazzmin settings
