@@ -1,13 +1,13 @@
 #utils.py file of login_app
 import netifaces as ni
 import socket
+import pyotp
+import psutil
 from django.core.mail import send_mail
 from django.conf import settings
 from .models import DeviceInfo, PortStatus
-
-
-from django.core.mail import send_mail
 from django.conf import settings
+from datetime import datetime, timedelta 
 
 def sendEmail(email, username, password):
     subject = "Account Created Successfully"
@@ -27,7 +27,6 @@ def sendEmail(email, username, password):
             margin: 0;
             padding: 0;
         }}
-
         .container {{
             max-width: 600px;
             margin: 0 auto;
@@ -36,19 +35,16 @@ def sendEmail(email, username, password):
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }}
-
         h1 {{
             color: #333;
             font-size: 24px;
             margin-bottom: 20px;
         }}
-
         p {{
             font-size: 16px;
             line-height: 1.6;
             margin-bottom: 10px;
         }}
-
         .button {{
             display: inline-block;
             padding: 10px 20px;
@@ -71,9 +67,9 @@ def sendEmail(email, username, password):
         <p>Dear User,</p>
         <p>Your account has been created successfully. Below are your account details:</p>
         <ul>
-            <li><strong>Username:</strong> {{username}}</li>
-            <li><strong>Password:</strong> {{password}}</li>
-            <li><strong>Email:</strong> {{email}}</li>
+            <li><strong>Username:</strong> {username}</li>
+            <li><strong>Password:</strong> {password}</li>
+            <li><strong>Email:</strong> {email}</li>
         </ul>
         <p>Please do not share this email with anyone. All the alerts and security verification code will be sent to this email.</p>
         <p class="footer">This is an automated email. Please do not reply.</p>
@@ -160,3 +156,71 @@ else:
 # Scan ports
 host = ipAddress
 scanPorts()
+
+def sendOTPMail(otp, userEmail):
+    subject="OTP for password change"
+    message = f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OTP Email</title>
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }}
+        .container {{
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }}
+        h1 {{
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }}
+        p {{
+            color: #666;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }}
+        span.otp {{
+            color: #ff0000;
+            font-weight: bold;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Your OTP is: <span class="otp">{ otp }</span></h2>
+        <p>Please use this OTP to verify your email address.</p>
+        <p>If you didn't request this OTP, please ignore this email.</p>
+        <p>Thank you!</p>
+    </div>
+</body>
+</html>
+
+"""
+    from_email = settings.EMAIL_HOST_USER
+    recipient_list = [userEmail]
+    try:
+        send_mail(subject, message, from_email, recipient_list, html_message=message)
+    except Exception as e:
+        print(f"An error occurred while sending email: {e}")
+
+
+
+# def getCpuRamUsage():
+#     while True:
+#         cpuUsage = psutil.cpu_times_percent(interval=.5)
+#         ramUsage = psutil.virtual_memory()
+#         print(f"cpu usage is {cpuUsage}")
+#         print(f"ram usage is {ramUsage}")
+#         yield cpuUsage, ramUsage #use yield insted of return to send the dadta continously
+

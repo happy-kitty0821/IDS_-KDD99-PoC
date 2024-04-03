@@ -1,12 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" type="image/x-icon" href="https://iic.edu.np/image/favicon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> profile </title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends 'base.html' %}
+{%load static%}
+{% block title %}Profile{% endblock %}
+
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<style>
+    body{
+        background-image: url("{% static 'images/profile.gif' %}");
+        background-size: auto;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>User Information</h2>
+    <div class="profilePic">
+        <img src="https://gifdb.com/images/high/profile-pic-infinite-dendrogram-eating-ice-cream-acm5iohqvqgk80pl.gif" alt="ProfilePicture" class="circular">
+    </div>
+    <p><span class="label">Username:</span> {{ user.username }}</p>
+    <p><span class="label">Email:</span> {{ user.email }}</p>
+    <p><span class="label">First Name:</span> {{ user.first_name }}</p>
+    <p><span class="label">Last Name:</span> {{ user.last_name }}</p>
+    <p><span class="label">Location:</span> <span id="userLocation"></span></p>
+    <br>
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    <h3>Change Email and Password</h3>
+    <form method="post">
+        {% csrf_token %}
+        <label for="new_email">New Email:</label>
+        <input type="hidden" id="username" name="username" value='{{ user.username }}'>
+        <label for="new_email">New Email:</label>
+        <input type="email" id="new_email" name="newEmail" required>
+        <label for="current_password">Current Password:</label>
+        <input type="password" id="current_password" name="currentPassword" required>
+        <label for="new_password">New Password:</label>
+        <input type="password" id="new_password" name="newPassword" required>
+        <button type="submit">Save Changes</button>
+    </form>
+</div>
+<script>
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            var locationElement = document.getElementById("userLocation");
+            locationElement.textContent = "Latitude: " + latitude + ", Longitude: " + longitude;
+        });
+    } else {
+        console.log("Geolocation is not available.");
+    }
+</script>
+{% endblock %}

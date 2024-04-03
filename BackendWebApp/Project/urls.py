@@ -23,11 +23,14 @@ urlpatterns = [
     path('login/', views.loginUser, name = 'login'),
     path('', views.landing, name = 'landing'),
     path('aboutproject/', views.aboutproject, name = 'aboutproject'),
-    path('login/passwordchange/', views.passwordchange, name='passwordchange'),
+    path('passwordchange/', views.passwordchange, name='passwordchange'),
+    path('passwordchange/otpVerify/', views.otpVerification, name='otpverify'),
+    path('passwordchange/otpVerify/changepass/', views.changePassword, name='changepassword'),
     path('register/', views.register, name='register'),
     path('home', views.homepage, name='home'),
     path('logout/', views.logoutuser, name='logout'),
     path('profile/', views.profile, name='profile'),
+    path('sysinfo/jsondata', views.sysinfo, name='systeminfo')
     
 ]
 

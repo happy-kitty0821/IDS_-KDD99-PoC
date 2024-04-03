@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container{
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .container__first{
+            flex:1;
+            height: 100%;
+            width: 100%;
+            background-color: green;
+        }
+
+        .container__second{
+            flex:1;
+            height: 100%;
+            width: 100%;
+            background-color: blue;
+        }
+    </style>
+
+    <div class="container">
+        <div class="container__first"></div>
+        <div class="container__second"></div>
+    </div>
+</body>
+</html>

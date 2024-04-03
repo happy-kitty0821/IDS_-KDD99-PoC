@@ -1,35 +1,17 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="https://iic.edu.np/image/favicon.png">
+{% block title %}Register User{% endblock %}
+{% block css %}
     <link rel="stylesheet" type = "text/css" href="{% static '/css/register.css' %}">
-    <title>Sign Up</title>
-</head>
+    <style>
+        body{
+            background-image: url("{% static 'images/regBg.gif' %}");
+            background-size: cover;
+        }
+    </style>
+{% endblock %}
+{% block content %}
 <body>
-    <nav>
-        <div class="logo">
-            <a href="https://iic.edu.np">
-                <img src="{% static 'images/logo.png' %}" alt="iic logo"/>
-            </a>
-            <ul>
-                <li>
-                    <a href="/register">Register User</a>
-                </li>
-                <li>
-                    <a href="/profile">Profile</a>
-                </li>
-                <li>
-                    <a href="{% url 'logout' %}">logout</a>
-                </li>
-            </ul>
-            <a href="https://ing.com.np">
-                <img src="{% static 'images/ing.png' %}" alt="ing logo"/>
-            </a>
-        </div>
-    </nav>
     <div class="container">
         <h2><span class="sapn-register"></span></h2>
         <form action="" method="post">
@@ -56,12 +38,14 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password1" required>
             </div>
-
             <div>
                 <label for="password">Password Again:</label>
                 <input type="password" id="password" name="password2" required>
+            </div>
+            <div>
+                <label for="profilePic">Profile Picture</label>
+                <input type="file" name="profilepic">
             </div>    
-            
             <div>
                 <button type="submit">Register</button>
             </div>    
@@ -77,4 +61,4 @@
       })
     </script>
 </body>
-</html>
+{% endblock %}

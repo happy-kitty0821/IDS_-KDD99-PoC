@@ -8,6 +8,11 @@
     <link rel="shortcut icon" type="image/x-icon" href="https://iic.edu.np/image/favicon.png">
     <title>SYP IDS[POC]</title>
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             display: flex;
             flex-direction: column;
@@ -59,11 +64,11 @@
             color: #c300ff;
         }
 
-        .threatmap{
+/*        .threatmap{
             position: sticky;
-            margin: 2px;
+            margin: 0px;
         }
-
+*/
     </style>
 </head>
 <body>
@@ -88,6 +93,6 @@
             </a>
         </div>
     </nav>
-    <iframe class="threatmap" src="https://threatmap.checkpoint.com/" width="1920" height="800" frameborder="0"> Live Cyber Attack Map</iframe>
+    <iframe style="position: relative;" class="threatmap" src="https://threatmap.checkpoint.com/" width="1920" height="905" frameborder="0"> Live Cyber Attack Map</iframe>
 </body>
 </html>

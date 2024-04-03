@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://iic.edu.np/image/favicon.png" />
+  <link rel="stylesheet" href="{%static 'css/index.css'%}" />
+  <meta http-equiv="refresh" content="100" />
+  <title>Home Page</title>
+</head>
+
+<body>
+  <nav>
+    <div class="logo">
+      <a href="https://iic.edu.np">
+        <img src="{% static 'images/logo.png' %}" alt="iic logo" />
+      </a>
+      <ul>
+        <li>
+          <a href="/register">Register User</a>
+        </li>
+        <li>
+          <a href="/profile">Profile</a>
+        </li>
+        <li>
+          <a href="{% url 'logout' %}">logout</a>
+        </li>
+      </ul>
+      <a href="https://ing.com.np">
+        <img src="{% static 'images/ing.png' %}" alt="ing logo" />
+      </a>
+    </div>
+  </nav>
+  <br />
+  <br />
+  <!-- <p style="font-weight: bolder;"> current user's UID : {{ user.id }}</p>
+    <p style="font-weight: bolder;"> logged in as {{ user.username }}</p> -->
+  <!--OST Widget code start-->
+  <div class="main-block">
+    <div class="main-block__first-half">
+      <div><iframe style="height: 500px; width:900px; float:left" src="//openspeedtest.com/speedtest"></iframe></div>
+      <!-- OST Widget code end -->
+      <br>
+      <br>
+      <div class="portStatus">
+        <h5>Listening Ports</h5>
+        <table border="2"
+          <thead>
+            <tr>
+              <th>Port Number</th>
+              <th>Status</th>
+              <th>Service</th>
+              <th>Host Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for portstatus in portstatus %}
+            <tr>
+              <td>{{ portstatus.portNumber }}</td>
+              <td>{{ portstatus.portStatus }}</td>
+              <td>{{ portstatus.portService }}</td>
+              <td>{{ portstatus.HostName.HostName }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

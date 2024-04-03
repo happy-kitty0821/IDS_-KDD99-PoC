@@ -1,5 +1,13 @@
 @charset "ISO-8859-1";
 
+*
+{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Quicksand', sans-serif;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -7,16 +15,14 @@ body {
     min-height: 100vh;
     background-color: aliceblue;
     background-size: cover;
-    background-position: center;
+    background-position: center 920px;
     margin: 0;
     font-family: Arial, sans-serif;
-    background-position-y: 920px;
 }
 
 nav {
     position: sticky;
-    background-position-y: 0px;
-    top: 0ss;
+    top: 0;
     width: 100%;
     background-color: #000000;
     box-shadow: 0 4px 6px rgb(255, 255, 255);

@@ -1,16 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Admins(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, null=False)
-    phone = models.CharField(max_length=255, unique=True, null=False)
-    email = models.EmailField(max_length=255, unique=True, null=False)
-    date_created = models.DateTimeField(auto_now_add=True, null=False)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_picture = models.ImageField(null=True, default='defaultPP.png', upload_to='profilePictures/')
 
     def __str__(self):
-        return self.name
-
+        return f'{self.user.username} Profile'
+    
+    
 class DeviceInfo(models.Model):
     HostName = models.CharField(max_length=50, primary_key=True)
     IpAddress = models.GenericIPAddressField()
@@ -28,20 +26,31 @@ class PortStatus(models.Model):
         return str(self.portNumber)
 
     
-class ChangesLogs(models.Model):
-    User = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
-    DateTime = models.DateTimeField()
-    HostName = models.ForeignKey(DeviceInfo, on_delete=models.CASCADE)
-    ChangesDoneMessage = models.CharField(max_length=255)
+# class ChangesLogs(models.Model):
+#     User = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+#     DateTime = models.DateTimeField(auto_now_add=True)
+#     HostName = models.ForeignKey(DeviceInfo, on_delete=models.CASCADE)
+#     ChangesDoneMessage = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.ChangesDone    
+#     def __str__(self):
+#         return self.ChangesDone    
 
-class AttacksDetected(models.Model):
-    time = models.DateTimeField()
+class AttackDetected(models.Model):
+    time = models.DateTimeField(auto_now_add=True)
     attackType = models.CharField(max_length=200)
     pcapFileName = models.CharField(max_length=200)
     pcapLocation = models.FileField(upload_to='pcaps/')
     
     def __str__(self):
         return self.attackType
+    
+
+class OTPCode(models.Model):
+    username = models.OneToOneField(User, on_delete=models.CASCADE)
+    otpCode = models.IntegerField( null=False)
+    changedOn = models.DateField(auto_now_add=True)
+    isVerified = models.BooleanField(default=False)
+    expireTime = models.DateTimeField(null=False)
+    
+    def __str__(self):
+        return f"{self.username.username} - {self.otpCode}"
