@@ -30,7 +30,11 @@ urlpatterns = [
     path('home', views.homepage, name='home'),
     path('logout/', views.logoutuser, name='logout'),
     path('profile/', views.profile, name='profile'),
-    path('sysinfo/jsondata', views.sysinfo, name='systeminfo')
+    path('sysinfo/', views.sysInfoTable, name='sysChartTable'),     
+    path('sysinfo/jsondata', views.sysinfo, name='systeminfo'),
+    path('delete/<int:id>/', views.deleteRecord, name='delete'),     
+    path('deleteUser/<int:id>/', views.deleteUser, name='deleteUser'),     
+    
     
 ]
 

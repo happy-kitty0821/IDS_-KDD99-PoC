@@ -54,3 +54,13 @@ class OTPCode(models.Model):
     
     def __str__(self):
         return f"{self.username.username} - {self.otpCode}"
+    
+    
+class SysInfo(models.Model):
+    cpuUsage = models.FloatField(max_length=20)
+    time = models.DateTimeField(auto_now_add=True)
+    ramUsage = models.FloatField(max_length=20)
+    criticality = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return str(cpuUsage)

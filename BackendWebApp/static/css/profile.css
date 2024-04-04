@@ -1,7 +1,7 @@
 body {
 	font-family: Arial, sans-serif;
 	margin: 0;
-	padding: 0px;
+	padding: 0;
 }
 .container {
 	max-width: 600px;
@@ -14,8 +14,8 @@ body {
 .profilePic {
 	align-items: center;
 	justify-content: center;
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     overflow: hidden;
     border-radius: 50%;
 }
@@ -58,4 +58,8 @@ button {
 }
 button:hover {
 	background-color: #0056b3;
+}
+
+.deleteButton:hover{
+	background-color: #f10a53;
 }

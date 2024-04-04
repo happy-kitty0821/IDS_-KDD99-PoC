@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
-from .utils import sendEmail, getAndStoreIp, scanPorts, sendOTPMail
+from .utils import sendEmail, getAndStoreIp, scanPorts, sendOTPMail, updateSysinfo
 from .models import *
 from django.db.models import Q
 from django.utils import timezone
@@ -57,6 +57,7 @@ def loginUser(request):
 
 def landing(request):
     getAndStoreIp()#calling the function from .utls.py
+    
     return render(request, 'landing.html')
 
 def aboutproject(request):
@@ -172,7 +173,7 @@ def profile(request):
         print(f"userow = {userRow}")
          # Check if the current password matches the user's password
         if userRow.check_password(currentPassword):
-            # Update user's email
+            #Update user's email
             user.email = newEmail
             user.save()
             # Change password if a new password is provided
@@ -187,5 +188,19 @@ def profile(request):
 
     return render(request, 'profile.html')
 
-def getCpuAndRamUsage(request, *args, **kwargs):
-    return JsonResponse()
+
+@login_required(login_url='landing')
+def sysInfoTable(request):
+    sysInfo = SysInfo.objects.all()
+    context = {"info" : sysInfo}
+    return render(request, 'sysInfo.html', context)
+
+def deleteRecord(request, id):
+    record = SysInfo.objects.get(id = id)
+    record.delete()
+    return redirect('/sysinfo')
+
+def deleteUser(request, id):
+    userDetails = User.objects.get(id = id)
+    userDetails.delete()
+    return redirect("/login")

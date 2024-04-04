@@ -22,7 +22,8 @@
     <p><span class="label">Email:</span> {{ user.email }}</p>
     <p><span class="label">First Name:</span> {{ user.first_name }}</p>
     <p><span class="label">Last Name:</span> {{ user.last_name }}</p>
-    <p><span class="label">Location:</span> <span id="userLocation"></span></p>
+    <p><span class="label">Location:</span> <span id="userLocation"></span></p> 
+    <a href="/deleteUser/{{user.id}}"><button id='deleteButton' type="button">Delete Account</button></a>
     <br>
     {% if messages %}
     {% for message in messages %}

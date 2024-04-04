@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import DeviceInfo, PortStatus, AttackDetected, OTPCode, Profile
+from .models import DeviceInfo, PortStatus, AttackDetected, OTPCode, Profile, SysInfo
 
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ['user', 'profile_picture']
@@ -34,3 +34,5 @@ class OTPCodeAdmin(admin.ModelAdmin):
     list_display = ('username', 'otpCode', 'changedOn', 'isVerified', 'expireTime')
 
 admin.site.register(OTPCode, OTPCodeAdmin)
+
+admin.site.register(SysInfo) 

@@ -1,0 +1,106 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %}System Information{% endblock %}
+{% block content %}
+<body>
+<style>
+    body{
+        background-image: url("{% static 'images/dfupegn.gif' %}");
+        background-size: auto;
+    }
+.container {
+    margin: 25px auto;
+    width: 99%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.hostname-ip {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 90%;
+    margin: 0 auto; /* Center the table horizontally */
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #3b3a3a;
+}
+
+th {
+    text-align: center;
+    font-weight: bolder;
+    max-width: fit-content;
+    margin: 5%;
+    font-size: larger;
+    font-style: italic;
+    background-color: #39b50be5;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+</style>
+<div class="container">
+    <h1>System Information Table</h1>
+    <div class="hostname-ip">
+        <h2>Hostname : {{hostname}}</h2>
+        <h2>Ip Adddress : {{ipAddress}}</h2>
+    </div>
+    <div class="table">
+        <table border="2">
+            <thead>
+                <tr>
+                    <th>cpu usage</th>
+                    <th>ram usage</th>
+                    <th>time</th>
+                    <th>criticality</th>
+                    <th>deleterecord</th>
+                  </tr>
+            </thead>
+            <tbody>
+                {% for data in info %}
+                <tr>
+                  <td>{{ data.cpuUsage }} %</td>
+                  <td>{{ data.ramUsage }} %</td>
+                  <td>{{ data.time }}</td>
+                  <td>{% if data.criticality %}Critical{% else %}Normal{% endif %}</td>
+                  <td>
+                    <a href="/delete/{{data.id}}"><button>Delete</button></a>
+                  </td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+{% endblock %}

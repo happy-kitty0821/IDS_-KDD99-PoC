@@ -3,11 +3,15 @@ import netifaces as ni
 import socket
 import pyotp
 import psutil
+import threading
+import time
 from django.core.mail import send_mail
 from django.conf import settings
-from .models import DeviceInfo, PortStatus
+from .models import DeviceInfo, PortStatus, SysInfo
 from django.conf import settings
 from datetime import datetime, timedelta 
+
+
 
 def sendEmail(email, username, password):
     subject = "Account Created Successfully"
@@ -224,3 +228,19 @@ def sendOTPMail(otp, userEmail):
 #         print(f"ram usage is {ramUsage}")
 #         yield cpuUsage, ramUsage #use yield insted of return to send the dadta continously
 
+
+
+
+def updateSysinfo():
+    while True:
+        cpu_percent = psutil.cpu_percent(interval=0.5)
+        ram_percent = psutil.virtual_memory().percent
+        criticalityStatus = cpu_percent >= 80
+        SysInfo.objects.create(cpuUsage=cpu_percent, ramUsage=ram_percent, criticality=criticalityStatus)
+        print(f"CPU Usage: {cpu_percent}%")
+        time.sleep(300)  #waiting for 300 seconds (5 minute)
+
+# Start the thread
+update_thread = threading.Thread(target=updateSysinfo)
+update_thread.daemon = True  # Daemonize the thread so it stops when the main process stops
+update_thread.start()
