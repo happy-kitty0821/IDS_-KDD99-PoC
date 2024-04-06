@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
-from .utils import sendEmail, getAndStoreIp, scanPorts, sendOTPMail, updateSysinfo
+from .utils import sendEmail, getAndStoreIp, scanPorts, sendOTPMail, updateSysinfo, sendAlertEmail
 from .models import *
 from django.db.models import Q
 from django.utils import timezone
@@ -57,7 +57,7 @@ def loginUser(request):
 
 def landing(request):
     getAndStoreIp()#calling the function from .utls.py
-    
+    attackDetect()
     return render(request, 'landing.html')
 
 def aboutproject(request):
@@ -204,3 +204,45 @@ def deleteUser(request, id):
     userDetails = User.objects.get(id = id)
     userDetails.delete()
     return redirect("/login")
+
+import numpy as np
+import pickle
+import os
+
+def attackDetect():
+    data = [0, 1, 11, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 1, 1.0, 1.0, 0.0, 0.0, 0.02, 0.08, 0.0, 1, 1, 2.00, 0.00, 1.00, 0.00, 1.0, 1.0, 0.00, 0.00]
+    print(data)
+    data = np.array(data)
+    print(f"type of the test data is {type(data)}")
+    
+    # Get the base directory of the project
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    try:
+        pickle_file_path = os.path.join(BASE_DIR, 'HIDS_model.pkl')
+
+        # Load the model from the pickle file
+        with open(pickle_file_path, 'rb') as model:
+            loadedModel = pickle.load(model)
+            predict = loadedModel.predict(data.reshape(1,-1))
+            print(f"raw prediction is {predict}")
+            resultDict = {'normal': 0, 'buffer_overflow': 1, 'loadmodule': 2, 'perl': 3, 'neptune': 4, 'smurf': 5, 'guess_passwd': 6,
+                        'pod': 7, 'teardrop': 8, 'portsweep': 9, 'ipsweep': 10, 'land': 11, 'ftp_write': 12, 'back': 13, 'imap': 14,
+                        'satan': 15, 'phf': 16, 'nmap': 17, 'multihop': 18, 'warezmaster': 19, 'warezclient': 20, 'spy': 21, 'rootkit': 22}
+            prediction_label = list(resultDict.keys())[list(resultDict.values()).index(predict)]
+            if prediction_label == 'normal':
+                print("no attacks detected")
+            else:
+                attackType = prediction_label
+                sourceIp = "192.168.4.201"
+                destinationIp = "192.168.42.4"
+                emails = []
+                users = User.objects.all()
+                for user in users:
+                    email = user.email
+                    emails.append(email)
+                sendAlertEmail(email=emails, attackType=attackType, sourceIp=sourceIp, destinationIp=destinationIp) # Implement sendAlertEmail function
+                print(f"predicted attack type is {prediction_label}")
+
+    except Exception as e:
+        raise e
+

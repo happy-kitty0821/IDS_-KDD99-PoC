@@ -11,14 +11,35 @@ from .models import DeviceInfo, PortStatus, SysInfo
 from django.conf import settings
 from datetime import datetime, timedelta 
 
-
+def sendAlertEmail(email, attackType, sourceIp, destinationIp):
+    subject = f"Server is under {attackType} attack"
+    message = f"""
+    <html>
+<body>
+<p>Dear Administrator,</p>
+<p>This is to notify you that the machine learning model has detected a potential attack on the network. Please take necessary action to mitigate the threat.</p>
+<p>Details of the attack:</p>
+<ul>
+<li>Attack Type: {attackType}</li>
+<li>Source IP: {sourceIp}</li>
+<li>Destination IP: {destinationIp}</li>
+</ul>
+<p>Thank you.</p>
+</body>
+</html>
+"""
+    from_email = settings.EMAIL_HOST_USER
+    recipient_list = email
+    try:
+        send_mail(subject, message, from_email, recipient_list, html_message=message)
+    except Exception as e:
+        print(f"An error occurred while sending email: {e}")
 
 def sendEmail(email, username, password):
     subject = "Account Created Successfully"
     message = f"""
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
