@@ -1,3 +1,6 @@
+import numpy as np
+import pickle
+import os
 import pyotp
 import psutil
 from datetime import timedelta
@@ -89,46 +92,6 @@ def passwordchange(request):
             messages.error(request, f"User '{username}' not found.")
     return render(request, 'passwordchange.html')
 
-def otpVerification(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        userOTP = request.POST.get('user_otp')
-        print(f"username is {username} and the otpcode is {userOTP}")
-        try:
-            userInfo = User.objects.get(username=username)
-            otpTable = OTPCode.objects.get(username=userInfo)
-            if otpTable.isVerified:
-                messages.error(request, "OTP has already been verified.")
-            elif otpTable.expireTime < datetime.now():
-                messages.error(request, "OTP has expired. Please request a new one.")
-            elif otpTable.otpCode == userOTP:
-                otpTable.isVerified = True
-                otpTable.save()
-                messages.success(request, "OTP verified successfully. You can now change your password.")
-                return render(request, 'changePassword.html', {'username': username})
-            else:
-                messages.error(request, "Incorrect OTP. Please try again.")
-        except ObjectDoesNotExist:
-            messages.error(request, f"User '{username}' not found.")
-    return render(request, 'otpVerification.html')
-
-
-def changePassword(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        new_password = request.POST.get('new_password')
-        confirm_password = request.POST.get('confirm_password')
-        if new_password != confirm_password:
-            messages.error(request, "Passwords do not match.")
-        else:
-            userInfo = User.objects.get(username=username)
-            userInfo.set_password(new_password)
-            userInfo.save()
-            messages.success(request, "Password changed successfully.")
-            return redirect('login')  # Redirect to login page after password change
-    return render(request, 'changePassword.html')
-
-
 
 def error404(request, xception):
     return render(request, 'Error404.png', {})
@@ -205,9 +168,6 @@ def deleteUser(request, id):
     userDetails.delete()
     return redirect("/login")
 
-import numpy as np
-import pickle
-import os
 
 def attackDetect():
     data = [0, 1, 11, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 1, 1.0, 1.0, 0.0, 0.0, 0.02, 0.08, 0.0, 1, 1, 2.00, 0.00, 1.00, 0.00, 1.0, 1.0, 0.00, 0.00]
