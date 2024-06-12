@@ -1,5 +1,6 @@
-# Ignore the kddcup99.csv file in the specified directory structure
-/SYP KDD99 Dataset/Dataset/kddcup99.csv
- 
-# ignore the tokens.txt
-/SYP KDD99 Dataset/token.txt
+./token.txt
+
+./BackendWebApp/testfolder
+
+./virenv
+
